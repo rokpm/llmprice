@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大语言模型</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto my-8">
+        <h1 class="text-4xl font-bold text-center mb-4">国内大模型信息</h1>
+        <p class="text-gray-600 text-center mb-4">收集国内大模型的信息，方便大家对比不同模型的能力、价格、知识库更新时间</p>
+        <div class="bg-white shadow-md rounded my-6">
+            <table class="text-left w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型名称</th>
+                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">公司名称</th>
+                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型长度</th>
+                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型价格</th>
+                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">知识库最新日期</th>
+                    </tr>
+                </thead>
+                <tbody id="modelData">
+                    <!-- 数据行 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const models = [
+                { name: "moonshot-v1-8k", company: "月之暗面", length: "8k", price: "¥0.012", updated: "2023-01-01" },
+                { name: "moonshot-v1-32k", company: "月之暗面", length: "32k", price: "¥0.024", updated: "2023-02-01" },
+                { name: "moonshot-v1-128k", company: "月之暗面", length: "128k", price: "¥0.06", updated: "2023-02-01" },
+                { name: "GLM-4", company: "智普", length: "128k", price: "¥0.1", updated: "2023-02-01" },
+                { name: "GLM-4V", company: "智普", length: "2k", price: "¥0.1", updated: "2023-02-01" },
+                { name: "GLM-3-Turbo", company: "智普", length: "128k", price: "¥0.0005", updated: "2023-02-01" },
+                { name: "星火大模型 V1.5", company: "讯飞星火", length: "128k", price: "¥0.015", updated: "2023-02-01" },
+                { name: "星火大模型 V3.0", company: "讯飞星火", length: "128k", price: "¥0.03", updated: "2023-02-01" },
+                { name: "星火大模型 V3.5", company: "讯飞星火", length: "128k", price: "¥0.03", updated: "2023-02-01" },
+                { name: "SenseChat-5", company: "商量大语言模型", length: "128k", price: "¥0.1", updated: "2023-02-01" },
+                { name: "SenseChat", company: "商量大语言模型", length: "4k", price: "¥0.012", updated: "2023-02-01" },
+                { name: "SenseChat-32K", company: "商量大语言模型", length: "32k", price: "¥0.036", updated: "2023-02-01" },
+                { name: "SenseChat-128K", company: "商量大语言模型", length: "128k", price: "¥0.06", updated: "2023-02-01" },
+                { name: "SenseChat-Turbo", company: "商量大语言模型", length: "？", price: "¥0.000", updated: "2023-02-01" },
+            ];
+
+            const tableBody = document.getElementById('modelData');
+            models.forEach(model => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="py-4 px-6 border-b border-grey-light">${model.name}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">${model.company}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">${model.length}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">${model.price}</td>
+                                <td class="py-4 px-6 border-b border-grey-light">${model.updated}</td>`;
+                tableBody.appendChild(tr);
+            });
+        });
+    </script>
+</body>
+</html>
