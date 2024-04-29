@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大语言模型</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://static.howxm.com/sdk.js" async id="howxm_script"></script>
-    <script src="https://hm.baidu.com/hm.js?5f18573ebc7ac776aa96651d4aca55ad" async></script>
     <style>
         .table-header { background-color: #f7f7f7; color: #333; }
         .table-cell { border-bottom: 1px solid #ccc; }
     </style>
+
+    <script>
+    function _howxm(){_howxmQueue.push(arguments)}
+    window._howxmQueue=window._howxmQueue||[];
+    _howxm('setAppID','68f74baa-d670-4cdd-b8e2-fed855b6e6bb');
+    (function(){var scriptId='howxm_script';
+    if(!document.getElementById(scriptId)){
+    var e=document.createElement('script'),
+    t=document.getElementsByTagName('script')[0];
+    e.setAttribute('id',scriptId);
+    e.type='text/javascript';e.async=!0;
+    e.src='https://static.howxm.com/sdk.js';
+    t.parentNode.insertBefore(e,t)}})();
+    </script>
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?5f18573ebc7ac776aa96651d4aca55ad";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto my-8">
@@ -40,7 +64,7 @@
                 { name: "moonshot-v1-128k", company: "月之暗面", length: "128k", price: "¥0.06" },
                 { name: "GLM-4", company: "智普AI", length: "128k", price: "¥0.1" },
                 { name: "GLM-4V", company: "智普AI", length: "2k", price: "¥0.1" },
-                { name: "GLM-3-Turbo", company: "智普AI", length: "128k", price: "¥0.0005" },
+                { name: "GLM-3-Turbo", company: "智普AI", length: "128k", price: "¥0.005" },
                 { name: "星火大模型 V1.5", company: "讯飞星火", length: "128k", price: "¥0.015" },
                 { name: "星火大模型 V3.0", company: "讯飞星火", length: "128k", price: "¥0.03" },
                 { name: "星火大模型 V3.5", company: "讯飞星火", length: "128k", price: "¥0.03" },
