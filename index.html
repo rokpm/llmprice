@@ -5,46 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大语言模型</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
-
-    <script>
-    function _howxm(){_howxmQueue.push(arguments)}
-    window._howxmQueue=window._howxmQueue||[];
-    _howxm('setAppID','68f74baa-d670-4cdd-b8e2-fed855b6e6bb');
-    (function(){var scriptId='howxm_script';
-    if(!document.getElementById(scriptId)){
-    var e=document.createElement('script'),
-    t=document.getElementsByTagName('script')[0];
-    e.setAttribute('id',scriptId);
-    e.type='text/javascript';e.async=!0;
-    e.src='https://static.howxm.com/sdk.js';
-    t.parentNode.insertBefore(e,t)}})();
-    </script>
-
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5f18573ebc7ac776aa96651d4aca55ad";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-
-
+    <script src="https://static.howxm.com/sdk.js" async id="howxm_script"></script>
+    <script src="https://hm.baidu.com/hm.js?5f18573ebc7ac776aa96651d4aca55ad" async></script>
+    <style>
+        .table-header { background-color: #f7f7f7; color: #333; }
+        .table-cell { border-bottom: 1px solid #ccc; }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto my-8">
         <h1 class="text-4xl font-bold text-center mb-4">国内大模型信息</h1>
-        <p class="text-gray-600 text-center mb-4">收集国内大模型的信息，方便大家对比不同模型的能力、价格、知识库更新时间</p>
+        <p class="text-gray-600 text-center mb-4">收集国内大模型的信息，方便大家对比不同模型的能力、价格</p>
         <div class="bg-white shadow-md rounded my-6">
-            <table class="text-left w-full border-collapse">
+            <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr>
-                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型名称</th>
-                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">公司名称</th>
-                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型长度</th>
-                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">模型价格</th>
-                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">知识库最新日期</th>
+                    <tr class="table-header">
+                        <th class="py-4 px-6 font-bold uppercase text-sm">模型名称</th>
+                        <th class="py-4 px-6 font-bold uppercase text-sm">公司名称</th>
+                        <th class="py-4 px-6 font-bold uppercase text-sm">模型长度</th>
+                        <th class="py-4 px-6 font-bold uppercase text-sm">模型价格</th>
                     </tr>
                 </thead>
                 <tbody id="modelData">
@@ -56,30 +35,35 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const models = [
-                { name: "moonshot-v1-8k", company: "月之暗面", length: "8k", price: "¥0.012", updated: "2023-01-01" },
-                { name: "moonshot-v1-32k", company: "月之暗面", length: "32k", price: "¥0.024", updated: "2023-02-01" },
-                { name: "moonshot-v1-128k", company: "月之暗面", length: "128k", price: "¥0.06", updated: "2023-02-01" },
-                { name: "GLM-4", company: "智普", length: "128k", price: "¥0.1", updated: "2023-02-01" },
-                { name: "GLM-4V", company: "智普", length: "2k", price: "¥0.1", updated: "2023-02-01" },
-                { name: "GLM-3-Turbo", company: "智普", length: "128k", price: "¥0.0005", updated: "2023-02-01" },
-                { name: "星火大模型 V1.5", company: "讯飞星火", length: "128k", price: "¥0.015", updated: "2023-02-01" },
-                { name: "星火大模型 V3.0", company: "讯飞星火", length: "128k", price: "¥0.03", updated: "2023-02-01" },
-                { name: "星火大模型 V3.5", company: "讯飞星火", length: "128k", price: "¥0.03", updated: "2023-02-01" },
-                { name: "SenseChat-5", company: "商量大语言模型", length: "128k", price: "¥0.1", updated: "2023-02-01" },
-                { name: "SenseChat", company: "商量大语言模型", length: "4k", price: "¥0.012", updated: "2023-02-01" },
-                { name: "SenseChat-32K", company: "商量大语言模型", length: "32k", price: "¥0.036", updated: "2023-02-01" },
-                { name: "SenseChat-128K", company: "商量大语言模型", length: "128k", price: "¥0.06", updated: "2023-02-01" },
-                { name: "SenseChat-Turbo", company: "商量大语言模型", length: "？", price: "¥0.000", updated: "2023-02-01" },
+                { name: "moonshot-v1-8k", company: "月之暗面", length: "8k", price: "¥0.012" },
+                { name: "moonshot-v1-32k", company: "月之暗面", length: "32k", price: "¥0.024" },
+                { name: "moonshot-v1-128k", company: "月之暗面", length: "128k", price: "¥0.06" },
+                { name: "GLM-4", company: "智普AI", length: "128k", price: "¥0.1" },
+                { name: "GLM-4V", company: "智普AI", length: "2k", price: "¥0.1" },
+                { name: "GLM-3-Turbo", company: "智普AI", length: "128k", price: "¥0.0005" },
+                { name: "星火大模型 V1.5", company: "讯飞星火", length: "128k", price: "¥0.015" },
+                { name: "星火大模型 V3.0", company: "讯飞星火", length: "128k", price: "¥0.03" },
+                { name: "星火大模型 V3.5", company: "讯飞星火", length: "128k", price: "¥0.03" },
+                { name: "SenseChat-5", company: "商汤科技", length: "128k", price: "¥0.1" },
+                { name: "SenseChat", company: "商汤科技", length: "4k", price: "¥0.012" },
+                { name: "SenseChat-32K", company: "商汤科技", length: "32k", price: "¥0.036" },
+                { name: "SenseChat-128K", company: "商汤科技", length: "128k", price: "¥0.06" },
+                { name: "SenseChat-Turbo", company: "商汤科技", length: "未知", price: "¥0.005" },
+                { name: "ERNIE-4.0-8K", company: "文心一言", length: "8k", price: "¥0.12" },
+                { name: "ERNIE-3.5-8K", company: "文心一言", length: "8k", price: "¥0.012" },
+                { name: "ERNIE-Lite-8K-0922", company: "文心一言", length: "8k", price: "¥0.008" },
+                { name: "qwen-turbo", company: "通义千问", length: "6k", price: "¥0.008" },
+                { name: "qwen-plus", company: "通义千问", length: "30k", price: "¥0.02" },
+                { name: "qwen-max", company: "通义千问", length: "6k", price: "¥0.12" },
             ];
 
             const tableBody = document.getElementById('modelData');
             models.forEach(model => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="py-4 px-6 border-b border-grey-light">${model.name}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">${model.company}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">${model.length}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">${model.price}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">${model.updated}</td>`;
+                tr.innerHTML = `<td class="py-4 px-6 table-cell">${model.name}</td>
+                                <td class="py-4 px-6 table-cell">${model.company}</td>
+                                <td class="py-4 px-6 table-cell">${model.length}</td>
+                                <td class="py-4 px-6 table-cell">${model.price}</td>`;
                 tableBody.appendChild(tr);
             });
         });
