@@ -8,38 +8,39 @@
     <style>
         .table-header { background-color: #f7f7f7; color: #333; }
         .table-cell { border-bottom: 1px solid #ccc; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header img {
+            height: 40px;
+        }
+       .follow-btn {
+            padding: 8px 16px;
+            background-color: #ffc107; /* 黄色背景 */
+            color: black; /* 文字颜色改为黑色 */
+            text-decoration: none;
+            border-radius: 20px; /* 增加圆角的尺寸 */
+        }
+
     </style>
-
-    <script>
-    function _howxm(){_howxmQueue.push(arguments)}
-    window._howxmQueue=window._howxmQueue||[];
-    _howxm('setAppID','68f74baa-d670-4cdd-b8e2-fed855b6e6bb');
-    (function(){var scriptId='howxm_script';
-    if(!document.getElementById(scriptId)){
-    var e=document.createElement('script'),
-    t=document.getElementsByTagName('script')[0];
-    e.setAttribute('id',scriptId);
-    e.type='text/javascript';e.async=!0;
-    e.src='https://static.howxm.com/sdk.js';
-    t.parentNode.insertBefore(e,t)}})();
-    </script>
-
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?5f18573ebc7ac776aa96651d4aca55ad";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-
-
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="header">
+        <div class="logo">
+            <span style="font-weight: bold;">LLMPrice</span>
+        </div>
+        <div>
+            <a href="https://m.okjike.com/users/756D3F0E-B0C8-4296-A301-412F96607BB6?ref=PROFILE_CARD&utm_source=user_card" class="follow-btn" target="_blank">关注我</a>
+        </div>
+    </div>
     <div class="container mx-auto my-8">
-        <h1 class="text-4xl font-bold text-center mb-4">国内大模型信息</h1>
-        <p class="text-gray-600 text-center mb-4">收集国内大模型的信息，方便大家对比不同模型的能力、价格</p>
+        <h1 class="text-4xl font-bold text-center mb-4">LLMPrice - 中国大模型对比</h1>
+        <p class="text-gray-600 text-center mb-4">对比国内大模型的价格、上下文长度、知识库更新时间等能力</p>
         <div class="bg-white shadow-md rounded my-6">
             <table class="w-full text-left border-collapse">
                 <thead>
@@ -47,7 +48,7 @@
                         <th class="py-4 px-6 font-bold uppercase text-sm">模型名称</th>
                         <th class="py-4 px-6 font-bold uppercase text-sm">公司名称</th>
                         <th class="py-4 px-6 font-bold uppercase text-sm">模型长度</th>
-                        <th class="py-4 px-6 font-bold uppercase text-sm">模型价格</th>
+                        <th class="py-4 px-6 font-bold uppercase text-sm cursor-pointer" onclick="sortTableByPrice()">模型价格 <span id="priceSortIndicator">⬍</span></th>
                     </tr>
                 </thead>
                 <tbody id="modelData">
@@ -57,7 +58,27 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        var currentSort = 'none'; // 可以是 'none', 'ascending', 'descending'
+
+        function sortTableByPrice() {
+    currentSort = currentSort === 'ascending' ? 'descending' : 'ascending';
+    updateSortIndicator();
+    renderTable();
+}
+
+function updateSortIndicator() {
+    const indicator = document.getElementById('priceSortIndicator');
+    if (currentSort === 'ascending') {
+        indicator.innerHTML = '▲'; // 显示向上箭头
+    } else if (currentSort === 'descending') {
+        indicator.innerHTML = '▼'; // 显示向下箭头
+    } else {
+        indicator.innerHTML = '⬍'; // 默认双向箭头
+    }
+}
+
+
+        function renderTable() {
             const models = [
                 { name: "moonshot-v1-8k", company: "月之暗面", length: "8k", price: "¥0.012" },
                 { name: "moonshot-v1-32k", company: "月之暗面", length: "32k", price: "¥0.024" },
@@ -81,7 +102,16 @@
                 { name: "qwen-max", company: "通义千问", length: "6k", price: "¥0.12" },
             ];
 
+            if (currentSort !== 'none') {
+                models.sort((a, b) => {
+                    let priceA = parseFloat(a.price.substring(1)); // 去除价格前的¥符号
+                    let priceB = parseFloat(b.price.substring(1));
+                    return currentSort === 'ascending' ? priceA - priceB : priceB - priceA;
+                });
+            }
+
             const tableBody = document.getElementById('modelData');
+            tableBody.innerHTML = ''; // 清空现有的表格数据
             models.forEach(model => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td class="py-4 px-6 table-cell">${model.name}</td>
@@ -90,7 +120,9 @@
                                 <td class="py-4 px-6 table-cell">${model.price}</td>`;
                 tableBody.appendChild(tr);
             });
-        });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTable);
     </script>
 </body>
 </html>
